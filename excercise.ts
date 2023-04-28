@@ -2,37 +2,28 @@
  * START: Follow the instructions below.
  */
 
-// Make this identity function generic.
-// This should fix the type errors on Line 13 and 15.
-// Hint: The type for the `value` function parameter should use a type variable.
+// Make this `LanguagesType` interface generic.
+// This should fix the type errors on Lines 14 and 21.
+// Hint: The type for the `languages` property should use a type variable.
 
-function identity<T>(value:T):T {
-    return value;
-}
-
-let value1 = identity<string>("France");
-
-let value2 = identity<number>(67_413_000);
-
-// ----
-
-async function fetchData<Type>(url: string) {
-    const response = await fetch(url);
-    const responseBody = await response.json();
-
-    return responseBody as Type;
-}
-
-interface User {
+interface Country <T> {
     name: string;
+    languages: T;
 }
 
-// Pass the `User` type as a type argument to the generic `fetchData()` function.
-// This should fix the type error on Line 35.
+const languagesObj1: Country<string> = {
+    name: "New Zealand",
+    languages: "English, Māori"
+};
 
-let user = await fetchData<User>("http://api.com/user/1");
+console.log(languagesObj1.languages);
 
-console.log(user.name);
+const languagesObj2: Country<string[]> = {
+    name: "Spain",
+    languages: ["Spanish", "Catalan", "Galician", "Basque", "Valencian"],
+};
+
+console.log(languagesObj2.languages.join(", "));
 
 // ----
 
