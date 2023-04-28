@@ -2,61 +2,34 @@
  * START: Follow the instructions below.
  */
 
-// The objects in the `countries` array use strings as the values of the
-// `currency` properties.
-// Complete this numeric enum so that it can be used instead of strings.
-// Hint: Use the string values in the `currency` properties as the enum members.
+// The `Currency` type doesn't work for the type of value in the
+// `narniaCurrency` variable. Change the `Currency` type into a
+// union type that works for both the variables.
+//
+// This should fix the type error on Line 15.
 
-const currencies = ["Euro", "Dollar"]
+type Currency = string | boolean;
 
-enum Currency {
-    France = 0,
-    US = 1,
-    Italy = 0,
-    New_Zealand = 1
+let indianCurrency: Currency = "Indian rupee";
+
+let narniaCurrency: Currency = false;
+
+// Change the type for the `data` function parameter so it can accept
+// the different types of data that are passed when it's being called.
+//
+// This should fix the type error on Lines 28 and 30.
+
+function outputCountryData(country: string, data: number | string) {
+    console.log(`The data for ${country} is: ${data}`);
 }
 
-// Update the type for the `currency` property in this interface to use
-// the `Currency` enum.
+outputCountryData("Italy", 60_317_116);
 
-interface Country {
-    name: string;
-    currency: string;
-}
+outputCountryData("Nigeria", "Naira");
 
-// Replace the string values for the `currency` properties below with
+outputCountryData("United States of America", "English");
 
-const countries: Country[] = [
-    {
-        name: "France",
-        currency: currencies[Currency.France],
-    },
-    {
-        name: "United States of America",
-        currency: currencies[Currency.US],
-    },
-    {
-        name: "Italy",
-        currency: currencies[Currency.Italy],
-    },
-    {
-        name: "New Zealand",
-        currency: currencies[Currency.New_Zealand],
-    },
-];
-
-// Create a string enum named `LanguageStatus`. Use it to replace the
-// string values for the `status` properties in the objects below.
-
-enum LanguageStatus {
-    Primary = "primary",
-    Secondary = "secondary"
-}
-
-const countryLanguages = [
-    { language: "Spanish", status: LanguageStatus.Primary },
-    { language: "English", status: LanguageStatus.Secondary },
-];
+outputCountryData("India", 1_352_642_280);
 
 // ----
 
