@@ -2,32 +2,45 @@
  * START: Follow the instructions below.
  */
 
-// Add the `any` type to fix the type errors in the following code.
+// Add a type annotation to this variable that describes the object it contains.
 
-let currency:any = { name: "Indian rupee" };
-
-currency.code = "THB";
-
-currency = "Baht";
-
-// Fix the if statement in this function so the type of `value` is narrowed to `string`.
-
-function countryNameLength(value: unknown) {
-    if (typeof value === "string") {
-        console.log(value.length);
-    }
+interface CountryPopulation  {
+    code: string;
+    population: number
 }
 
-countryNameLength("United States of America");
+const countryPopulation:CountryPopulation = {
+    code: "NZ",
+    population: 5_135_300,
+};
 
-// Fix the type error we see when calling this function.
-// Hint: Replace one of the `never` types with a different type.
+// Define a `Country` interface that describes the object in this variable.
+// Add the `Country` type as a type annotation for this variable.
 
-function throwCountryError(message: string): never {
-    throw new Error(`Could not find country: ${message}`);
+interface Country extends CountryPopulation {
+    name: string
+} 
+
+const countryData:Country = {
+    name: "India",
+    code: "IN",
+    population: 1_352_642_280,
+};
+
+// Define a `Currency` type alias that describes the object in this variable.
+// Add the `Currency` type as a type annotation for this variable.
+
+type Currency = {
+    name: string;
+    code: string;
+    symbol: string;
 }
 
-throwCountryError("Narnia");
+const currencyData: Currency = {
+    name: "Euro",
+    code: "EUR",
+    symbol: "€",
+};
 
 // ----
 
