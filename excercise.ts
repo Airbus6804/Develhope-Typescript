@@ -3,37 +3,17 @@
  */
 
 class Currency {
-    // Add types for these fields and make them private.
-    // Hint: Look at the type of values being passed when `new Currency()`
-    // is called below.
+    public name: string;
+    private code: string;
+    private symbol: string;
 
-    private name:string;
-    private code:string;
-    private symbol:string;
-
-    // Add types to the constructor parameters.
-
-    constructor(name:string, code:string, symbol:string) {
+    constructor(name: string, code: string, symbol: string) {
         this.name = name;
         this.code = code;
         this.symbol = symbol;
-
-        // Store the `code` and `symbol` parameter values in
-        // their corresponding class fields.
-
-
     }
 
-    // Methods are public by default.
-    // Add a visibility modifier to make it clear this method is public.
-    //
-    // Add a return type for this method
-    // Hint: Look at the inferred return type.
-
-    public describe():void {
-        // Replace the `null` values below with the appropriate field values.
-        // Hint: Access field values with: this.fieldName
-
+    public describe(): void {
         let description = `The ${this.name} currency `;
         description += `has the code ${this.code} `;
         description += `and uses the symbol ${this.symbol}.`;
@@ -42,54 +22,51 @@ class Currency {
     }
 }
 
-// ----
+// Alter this class to extend the `Currency` class.
 
-const currencyNaira = new Currency("Naira", "NGN", "₦");
+class DetailedCurrency extends Currency {
 
-console.log(currencyNaira);
+    // Define a private field named `banknotes`.
+    // Set the field type so it can be used to store an array of numbers.
 
-// Call the `describe()` method on the `currencyNaira` object.
+    private banknotes:number[];
 
+    // Add a `banknotes` parameter with the same type as the `banknotes` field.
 
+    constructor(name: string, code: string, symbol: string, banknotes: number[]) {
+        // Fix this call to the parent constructor.
 
-// ----
+        super(name, code, symbol);
 
-const currencyUsDollar = new Currency("United States dollar", "USD", "$");
+        // Store the value of the `banknotes` parameter in the corresponding field.
 
-console.log(currencyUsDollar);
+        this.banknotes = banknotes;
 
-// Call the `describe()` method on the `currencyUsDollar` object.
+    }
 
+    // Change the visibility modifier on this method so it can be called
+    // by code outside of this class.
 
+    public describeBankNotes() {
+        // Change the visibility of the parent class `name` field so
+        // that its value can be read here in this child class method.
 
-// ----
+        let description = `The ${this.name} currency uses the banknotes `;
 
-export {};/**
- * START: Follow the instructions below.
- */
+        // Replace `null` with the value of the `banknotes` field.
 
-const populations = [
-    1_412_600_000,
-    60_317_116,
-    69_950_850,
-    10_678_632,
-];
+        description += this.banknotes;
 
-// The Array reduce method allows us to generate a single value from
-// an array of values. Below we're using it to sum the values of the
-// `populations` array.
-//
-// The `population` parameter in the callback has an inferred type of `number`.
-// Change the initial value (`false`) to a value with the same type as `population`.
-// This should fix the type error on Line 23.
-//
-// Hint: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+        console.log(description);
+    }
 
-const sumOfPopulations = populations.reduce((total, population) => {
-    return total + population;
-}, 0);
+}
 
-console.log(sumOfPopulations);
+const euroCurrency = new DetailedCurrency("Euro", "EUR", "€", [500, 200, 100, 50, 20, 10, 5]);
+
+euroCurrency.describe();
+
+euroCurrency.describeBankNotes();
 
 // ----
 
